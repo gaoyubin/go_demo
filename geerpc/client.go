@@ -22,6 +22,7 @@ type Client struct {
 	pending map[uint64]*Call
 	seq     uint64
 	mu      sync.Mutex
+	sending sync.Mutex
 }
 
 const MagicNumber = 0x3bef5c
@@ -85,12 +86,17 @@ func (client *Client) Call(serviceMethod string, args, reply interface{}) error 
 		client.pending[call.Seq] = call
 		client.seq++
 	}
-	var h codec.Header
-	h.ServiceMethod = call.ServiceMethod
-	h.Seq = call.Seq
-	h.Error = ""
-	if err := client.cc.Write(&h, call.Args); err != nil {
-		log.Println("err", err, h)
+
+	{
+		client.sending.Lock()
+		var h codec.Header
+		h.ServiceMethod = call.ServiceMethod
+		h.Seq = call.Seq
+		h.Error = ""
+		if err := client.cc.Write(&h, call.Args); err != nil {
+			log.Println("err", err, h)
+		}
+		client.sending.Unlock()
 	}
 	result_call := <-done
 	return result_call.Error

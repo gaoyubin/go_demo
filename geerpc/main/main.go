@@ -67,7 +67,7 @@ func main() {
 		panic(err)
 	}
 	var wg sync.WaitGroup
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 500; i++ {
 		wg.Add(1)
 		go func(i int) {
 			defer wg.Done()

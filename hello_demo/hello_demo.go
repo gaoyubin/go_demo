@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"reflect"
 	"time"
 )
@@ -857,31 +858,58 @@ func main() {
 // 	fmt.Println(funcValue, funcValue.Type(), funcValue.Type().Name())
 // }
 
-type Person struct {
-	Name string
-	Age  int
-}
+// type Person struct {
+// 	Name string
+// 	Age  int
+// }
 
-func (p Person) SayHello(a int) int {
-	fmt.Printf("Hello, my name is %s and I am %d years old\n", p.Name, p.Age)
-	fmt.Println(a)
-	return 0
-}
+// func (p Person) SayHello(a int) int {
+// 	fmt.Printf("Hello, my name is %s and I am %d years old\n", p.Name, p.Age)
+// 	fmt.Println(a)
+// 	return 0
+// }
+
+// func main() {
+// 	p := Person{Name: "Alice", Age: 30}
+
+// 	// 使用反射调用结构体方法
+// 	v := reflect.ValueOf(p)
+// 	m := v.MethodByName("SayHello")
+// 	// fmt.Println(m.Type().Method())
+// 	// // m.Call(nil)
+
+// 	// fmt.Println(m.Name())
+// 	// fmt.Println(m.Addr().Type().Name(), m.Elem().Type().Name())
+// 	// v.Method(0)
+// 	// t := reflect.TypeOf(p)
+// 	// fmt.Println(t.Method(0).Name)
+// 	// res := t.Method(0).Func.Call([]reflect.Value{reflect.ValueOf(p), reflect.ValueOf(1)})
+// 	// fmt.Println(res)
+// }
+
+type Args struct{ Num1, Num2 int }
 
 func main() {
-	p := Person{Name: "Alice", Age: 30}
+	// log.Println(reflect.TypeOf(1))
+	// log.Println(reflect.New(reflect.TypeOf(1)).Elem().Type())
 
-	// 使用反射调用结构体方法
-	v := reflect.ValueOf(p)
-	m := v.MethodByName("SayHello")
-	// fmt.Println(m.Type().Method())
-	// // m.Call(nil)
+	// var p *int
+	// log.Println(reflect.TypeOf(p))
+	// log.Println(reflect.New(reflect.TypeOf(p).Elem()).Type())
 
-	// fmt.Println(m.Name())
-	// fmt.Println(m.Addr().Type().Name(), m.Elem().Type().Name())
-	// v.Method(0)
-	// t := reflect.TypeOf(p)
-	// fmt.Println(t.Method(0).Name)
-	// res := t.Method(0).Func.Call([]reflect.Value{reflect.ValueOf(p), reflect.ValueOf(1)})
-	// fmt.Println(res)
+	// var args Args
+	// log.Println(reflect.New(reflect.TypeOf(args)))
+	// val := reflect.New(reflect.TypeOf(args)).Elem()
+	// log.Println(val, val.Addr().Interface())
+
+	var i int
+	val := reflect.New(reflect.TypeOf(i)).Elem()
+	modifyVal(val.Addr().Interface())
+	log.Println(val)
+}
+
+func modifyVal(i interface{}) {
+	val := i.(*int)
+	*val = 3
+	log.Println(*val)
 }
