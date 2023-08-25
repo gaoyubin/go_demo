@@ -1,0 +1,25 @@
+// package xclient
+
+// import "math/rand"
+
+// // type GetFunc
+// type DiscoveryStrategy interface {
+// 	GetServer(l []string, lastindex int) string
+// }
+
+// type RandomStrategy struct {
+// }
+
+// func (randstrategy *RandomStrategy) GetServer(l []string, lastindex int) string {
+// 	return l[rand.Intn(len(l))]
+// }
+
+// type RonbinStrategy struct {
+// 	// lastindex uint32
+// }
+
+// func (ronbinstrategy *RonbinStrategy) GetServer(l []string, lastindex int) string {
+// 	res := l[lastindex%len(l)]
+// 	lastindex = lastindex + 1%len(l)
+// 	return res
+// }

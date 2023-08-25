@@ -69,6 +69,13 @@ func NewClient(conn net.Conn) (*Client, error) {
 	go client.receive()
 	return client, nil
 }
+func NewClientWithAddr(addr string) (*Client, error) {
+	conn, err := net.Dial("tcp", addr)
+	if err != nil {
+		return nil, err
+	}
+	return NewClient(conn)
+}
 
 func (client *Client) Call(serviceMethod string, args, reply interface{}) error {
 	done := make(chan *Call)

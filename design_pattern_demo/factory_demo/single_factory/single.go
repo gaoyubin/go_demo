@@ -27,3 +27,5 @@ func GetInstance() *single {
 	}
 	return singleInstance
 }
+
+var DefaultIns = single{}

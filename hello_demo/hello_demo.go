@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"reflect"
 	"time"
 )
 
@@ -887,29 +885,243 @@ func main() {
 // 	// fmt.Println(res)
 // }
 
-type Args struct{ Num1, Num2 int }
+// type Args struct{ Num1, Num2 int }
 
-func main() {
-	// log.Println(reflect.TypeOf(1))
-	// log.Println(reflect.New(reflect.TypeOf(1)).Elem().Type())
+// func main() {
+// 	// log.Println(reflect.TypeOf(1))
+// 	// log.Println(reflect.New(reflect.TypeOf(1)).Elem().Type())
 
-	// var p *int
-	// log.Println(reflect.TypeOf(p))
-	// log.Println(reflect.New(reflect.TypeOf(p).Elem()).Type())
+// 	// var p *int
+// 	// log.Println(reflect.TypeOf(p))
+// 	// log.Println(reflect.New(reflect.TypeOf(p).Elem()).Type())
 
-	// var args Args
-	// log.Println(reflect.New(reflect.TypeOf(args)))
-	// val := reflect.New(reflect.TypeOf(args)).Elem()
-	// log.Println(val, val.Addr().Interface())
+// 	// var args Args
+// 	// log.Println(reflect.New(reflect.TypeOf(args)))
+// 	// val := reflect.New(reflect.TypeOf(args)).Elem()
+// 	// log.Println(val, val.Addr().Interface())
 
-	var i int
-	val := reflect.New(reflect.TypeOf(i)).Elem()
-	modifyVal(val.Addr().Interface())
-	log.Println(val)
-}
+// 	var i int
+// 	val := reflect.New(reflect.TypeOf(i)).Elem()
+// 	modifyVal(val.Addr().Interface())
+// 	log.Println(val)
+// }
 
-func modifyVal(i interface{}) {
-	val := i.(*int)
-	*val = 3
-	log.Println(*val)
-}
+// func modifyVal(i interface{}) {
+// 	val := i.(*int)
+// 	*val = 3
+// 	log.Println(*val)
+// }
+
+// func main() {
+// 	// log.Println("hello")
+// 	log.SetFlags(log.Lshortfile | log.Lmicroseconds | log.Ldate)
+// 	log.Println("hello")
+// 	// system.Println("he")
+// 	fmt.Println("he")
+// }
+
+// func main() {
+// 	err := errors.New("123")
+// 	// errors.Errorf("12")
+// 	fmt.Errorf("12")
+// }
+
+// func main() {
+// 	before := time.Now()
+// 	// time.Sleep(3 * time.Second)
+
+// 	// ti := time.NewTimer(2 * time.Second)
+// 	// <-ti.C
+
+// 	// <-time.After(2 * time.Second)
+
+// 	// ti := time.NewTicker(2 * time.Second)
+// 	// for {
+// 	// 	<-ti.C
+// 	// 	log.Println(time.Now())
+// 	// }
+// 	done := make(chan struct{})
+// 	go func() {
+// 		ti := time.NewTimer(3 * time.Second)
+// 		for {
+// 			select {
+// 			case <-ti.C:
+// 				log.Println(time.Now().Clock())
+// 				ti.Reset(3 * time.Second)
+// 			case <-done:
+// 				return
+// 			}
+// 		}
+// 	}()
+// 	<-time.After(10 * time.Second)
+// 	after := time.Now()
+// 	done <- struct{}{}
+// 	log.Println(before, after)
+
+// }
+// func main() {
+// 	log.Println("start", time.Now())
+// 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+// 	defer cancel()
+// 	// go func(ctx context)
+// 	go func(ctx context.Context) {
+// 		ti := time.NewTicker(2 * time.Second)
+// 		for {
+// 			select {
+// 			case <-ti.C:
+// 				log.Println("timer", time.Now())
+// 			case <-ctx.Done():
+// 				log.Println("ctx timeout")
+// 				return
+// 			}
+// 		}
+// 	}(ctx)
+// 	<-time.After(5 * time.Second)
+// 	log.Println("end", time.Now())
+// }
+
+// func main() {
+// 	// ti := time.NewTimer(2)
+// 	// time.After()
+// 	c1 := make(chan string)
+// 	c2 := make(chan string)
+// 	go func() {
+// 		time.Sleep(1 * time.Second)
+// 		c1 <- "one"
+// 	}()
+// 	go func() {
+// 		time.Sleep(2 * time.Second)
+// 		c2 <- "two"
+// 	}()
+// 	select {
+// 	case msg1 := <-c1:
+// 		log.Println("c1", msg1)
+// 	case msg2 := <-c2:
+// 		log.Println("c2", msg2)
+// 	default:
+// 		log.Println("default")
+// 	}
+// }
+// type Person struct {
+// 	Age  int
+// 	Name string
+// }
+
+// func main() {
+// 	m := make(map[string]*Person)
+// 	m["1"] = &Person{10, "apple"}
+// 	p := m["1"]
+// 	p.Name = "low"
+// 	log.Println(p, m["1"])
+// }
+
+// type Person struct {
+// 	Age  int
+// 	Name string
+// }
+
+// type HelloHandlerStruct struct {
+// 	content string
+// }
+
+// func (handler *HelloHandlerStruct) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+// 	p := Person{10, "low"}
+// 	// fmt.Fprintf(w, handler.content)
+// 	msg, _ := json.Marshal(p)
+// 	w.Header().Set("content-type", "text/json")
+// 	w.Write(msg)
+// 	log.Println(string(msg), p)
+// }
+// func main() {
+// 	http.Handle("/", &HelloHandlerStruct{content: "hello"})
+// 	wg := sync.WaitGroup{}
+// 	wg.Add(1)
+// 	go func() {
+// 		log.Println("begin")
+// 		resp, err := http.Get("http://127.0.0.1:8000/")
+// 		if err != nil {
+// 			panic(err)
+// 		}
+// 		// ioutil.ReadAll(resp.Body)
+// 		// b := new(bytes.Buffer)
+// 		// b.Write(resp.Body)
+// 		b, err := ioutil.ReadAll(resp.Body)
+// 		log.Println(string(b), err)
+// 		wg.Done()
+// 	}()
+// 	http.ListenAndServe(":8000", nil)
+// 	wg.Wait()
+// }
+
+// func main() {
+// 	var mu sync.Mutex
+// 	mu.Lock()
+// 	defer mu.Unlock()
+// 	r := rand.New(rand.NewSource(42))
+// 	log.Println(r.Intn(10))
+// 	log.Println(time.Now().UnixNano())
+// 	log.Println(time.Now().Unix())
+
+// }
+
+// func process(conn net.Conn) {
+// 	defer conn.Close()
+// 	for {
+// 		buf := make([]byte, 1024)
+// 		n, err := conn.Read(buf)
+// 		if err != nil {
+// 			log.Println("客户端退出", err)
+// 			return
+// 		}
+// 		log.Println(n, string(buf))
+// 	}
+// }
+// func main() {
+// 	l, err := net.Listen("tcp", ":8080")
+// 	if err != nil {
+// 		panic(err)
+// 	}
+
+// 	defer l.Close()
+// 	go func() {
+// 		for {
+// 			conn, err := l.Accept()
+// 			if err != nil {
+// 				log.Println("accept err", err)
+// 			}
+// 			go process(conn)
+// 		}
+// 	}()
+
+// 	conn, err := net.Dial("tcp", ":8080")
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	log.Println("tcp client", conn, err)
+// 	// rd := bufio.NewReader(conn)
+// 	// // rd.ReadString()
+// 	// os.OpenFile()
+// 	// bytes.NewReader()
+// 	// bytes.Buffer
+// 	rd := bufio.NewReader(os.Stdin)
+// 	line, err := rd.ReadString('\n')
+// 	if err != nil {
+// 		log.Println("readstring err", err)
+// 	}
+// 	n, err := conn.Write([]byte(line))
+// 	if err != nil {
+// 		log.Println("write err", err)
+// 	}
+// 	log.Println("客户端发送了", n, line)
+
+// 	// fmt.Scanf("")
+// }
+
+// func HelloHandler(w http.ResponseWriter, r *http.Request) {
+// 	fmt.Fprintf(w, "hello world")
+// }
+// func main() {
+// 	http.HandleFunc("/", HelloHandler)
+// 	http.Handler()
+// 	http.ListenAndServe(":9090", nil)
+// }
