@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"time"
 )
 
@@ -1125,3 +1126,104 @@ func main() {
 // 	http.Handler()
 // 	http.ListenAndServe(":9090", nil)
 // }
+
+// type Person struct {
+// 	Name string
+// 	Age  int
+// }
+
+// type ByAge []Person
+
+// func (a ByAge) Len() int           { return len(a) }
+// func (a ByAge) Less(i, j int) bool { return a[i].Age < a[j].Age }
+// func (a ByAge) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+
+// func main() {
+// 	n := uint32(300)
+// 	buf := make([]byte, 4)
+// 	binary.BigEndian.PutUint32(buf, n)
+// 	fmt.Println(buf)
+// 	nn := binary.BigEndian.Uint32(buf)
+// 	fmt.Println(nn)
+// 	// error
+// 	fmt.Println(strings.Index("hello", "ll"))
+// 	fmt.Println(strings.Join([]string{"hell", "world"}, ""))
+// 	fmt.Println(strings.Replace("hello world", "l", "-", 1))
+// 	fmt.Println(strings.SplitN("he-llo-wor-ld", "-", -1))
+// 	fmt.Println(strings.Count("hello", "l"))
+
+// 	s_int := []int{3, 6, 8, 1, 2, 4}
+// 	sort.Ints(s_int)
+// 	// sort.IntSlice(s_int)
+// 	sort.Sort(sort.IntSlice(s_int))
+// 	fmt.Println(s_int)
+
+// 	family := []Person{
+// 		{"David", 2},
+// 		{"Alice", 23},
+// 		{"Eve", 2},
+// 		{"Bob", 25},
+// 	}
+
+// 	// sort.Sort(ByAge(family))
+// 	// fmt.Println(family)
+
+// 	sort.SliceStable(family, func(i, j int) bool {
+// 		return family[i].Age < family[j].Age
+// 	})
+// 	fmt.Println(family)
+
+// 	n_int := []int{1, 3, 5, 7, 9, 2, 4, 6}
+// 	sort.Ints(n_int)
+// 	fmt.Println(n_int)
+// 	// fmt.Println(sort.SearchInts(n_int, 8))
+// 	fmt.Println(sort.Search(len(n_int), func(i int) bool {
+// 		return n_int[i] >= 7
+// 	}))
+// }
+// type Person struct {
+// 	Name string
+// 	Age  int
+// }
+
+// func main() {
+// 	var person Person
+// 	p := &person
+// 	pName := (*string)(unsafe.Pointer(p))
+// 	*pName = "low"
+// 	pAge := (*int)(unsafe.Pointer(uintptr(unsafe.Pointer(p)) + unsafe.Offsetof(p.Age)))
+// 	*pAge = 20
+// 	fmt.Println(person)
+
+// }
+
+// func main() {
+// 	var n int32
+// 	var wg sync.WaitGroup
+// 	for i := 0; i < 100; i++ {
+// 		wg.Add(1)
+// 		go func() {
+// 			for i := 0; i < 100; i++ {
+// 				// n += 1
+// 				atomic.AddInt32(&n, 1)
+// 			}
+// 			wg.Done()
+// 		}()
+// 	}
+// 	wg.Wait()
+// 	fmt.Println(n)
+// 	strconv.Itoa()
+// }
+
+func main() {
+	// reader_str := strings.NewReader("hello world")
+	// // reader_byte := bytes.NewReader([]byte{1, 2, 3})
+
+	// reader_buf := bufio.NewReader(reader_str)
+	// line1, err := reader_buf.ReadString(' ')
+	// line2, err := reader_buf.ReadString(' ')
+	// fmt.Println(line1, err, line2)
+
+	mux := http.NewServeMux()
+	mux.ServeHTTP()
+}
