@@ -1,0 +1,176 @@
+package main
+
+import (
+	"database/sql"
+	"encoding/json"
+	"fmt"
+
+	_ "github.com/mattn/go-sqlite3"
+)
+
+var db *sql.DB
+
+type User struct {
+	id   int
+	name string
+	age  int
+}
+
+func init() {
+	var err error
+	db, err = sql.Open("sqlite3", "test.db")
+	if err != nil {
+		panic(err)
+	}
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("init db succ", db)
+}
+
+func insertRowDemo() error {
+	sqlStr := "insert into user(name, age) values (?,?)"
+	ret, err := db.Exec(sqlStr, "low", 30)
+	if err != nil {
+		fmt.Printf("insert failed, err:%v\n", err)
+		return err
+	}
+
+	theID, err := ret.LastInsertId() // 新插入数据的id
+	if err != nil {
+		fmt.Printf("get lastinsert ID failed, err:%v\n", err)
+		return err
+	}
+	fmt.Printf("insert success, the id is %d.\n", theID)
+	return nil
+}
+
+func QueryDemo() {
+	sqlStr := "select * from user where id > ?"
+	stmt, err := db.Prepare(sqlStr)
+	if err != nil {
+		fmt.Println("prepare err", err)
+		return
+	}
+	defer stmt.Close()
+	rows, err := stmt.Query(0)
+	for rows.Next() {
+		var u User
+		rows.Scan(&u.id, &u.name, &u.age)
+		if err != nil {
+			fmt.Printf("scan failed, err:%v", err)
+			return
+		}
+		fmt.Println("show user", u)
+	}
+}
+
+// func main() {
+// 	// sts := `drop table if exists cars;
+// 	// create table cars(id INTEGER PRIMARY KEY, name TEXT, price INTEGER)`
+// 	// _, err := db.Exec(sts)
+// 	// if err != nil {
+// 	// 	log.Fatal(err)
+// 	// }
+// 	// log.Fatal(insertRowDemo())
+// 	QueryDemo()
+// 	log.Println("end")
+// }
+
+// func funcMui(x, y int) (err error) {
+// 	// return x + y, nil
+// }
+
+// func main() {
+// 	sn1 := struct {
+// 		age  int
+// 		name string
+// 	}{age: 11, name: "qq"}
+// 	sn2 := struct {
+// 		age  int
+// 		name string
+// 	}{age: 11, name: "qq"}
+
+// 	sn3 := struct {
+// 		name string
+// 		age  int
+// 	}{age: 11, name: "qq"}
+
+// 	if sn1 == sn2 {
+// 		fmt.Println("sn1 == sn2")
+// 	}
+// 	if sn2 == sn3{
+
+// 	}
+// 	sm1 := struct {
+// 		age int
+// 		m   map[string]string
+// 	}{age: 11, m: map[string]string{"a": "1"}}
+// 	sm2 := struct {
+// 		age int
+// 		m   map[string]string
+// 	}{age: 11, m: map[string]string{"a": "1"}}
+
+// 	if sm1 == sm2 {
+// 		fmt.Println("sm1 == sm2")
+// 	}
+
+// 	// m1  := make(map[string]string)
+// 	// m2  := make(map[string]string)
+// 	// if m1 == m2{
+
+// 	// }
+
+// }
+
+// func hello(num ...int) {
+// 	num[0] = 18
+// }
+
+// func main() {
+// 	i := []int{5, 6, 7}
+// 	hello(i...)
+// 	fmt.Println(i[0])
+
+// 	a := [5]int{1, 2, 3, 4, 5}
+// 	t := a[3:4]
+// 	fmt.Println(t)
+
+// 	// a := [2]int{5, 6}
+// 	// b := [3]int{5, 6}
+// 	// if a == b {
+
+// 	// } else {
+
+// 	// }
+
+// 	// m := make(map[int]string)
+// 	// fmt.Println(len(m), cap(m))
+
+// 	s := make(map[string]int)
+// 	delete(s, "h")
+// 	fmt.Println(s["h"])
+// }
+
+type Person struct {
+	Name string
+	Age  int
+}
+
+func main() {
+	p := &Person{
+		"low",
+		23,
+	}
+	buf, err := json.Marshal(p)
+	if err != nil {
+		panic(err)
+	}
+	m := make(map[string]json.RawMessage)
+	err = json.Unmarshal(buf, m)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(m)
+}
