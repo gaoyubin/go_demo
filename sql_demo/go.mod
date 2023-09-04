@@ -1,8 +1,8 @@
 module sqldemo
 
-go 1.16
+go 1.19
 
 require (
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
-	github.com/mattn/go-sqlite3 v1.14.17 // indirect
+	github.com/gomodule/redigo v1.8.9 // indirect
 )

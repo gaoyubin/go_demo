@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"sort"
-	"strings"
 	"time"
 )
 
@@ -1216,50 +1214,57 @@ func main() {
 // 	strconv.Itoa()
 // }
 
+// func main() {
+// 	// reader_str := strings.NewReader("hello world")
+// 	// // reader_byte := bytes.NewReader([]byte{1, 2, 3})
+
+// 	// reader_buf := bufio.NewReader(reader_str)
+// 	// line1, err := reader_buf.ReadString(' ')
+// 	// line2, err := reader_buf.ReadString(' ')
+// 	// fmt.Println(line1, err, line2)
+
+// 	// mux := http.NewServeMux()
+// 	// mux.ServeHTTP()
+
+// 	// buf := bytes.NewBuffer(make([]byte, 0))
+// 	// fmt.Fprint(buf, "hello", 1234, "world")
+// 	// fmt.Println(buf)
+// 	// str := fmt.Sprint("hwll step")
+// 	// fmt.Println(str)
+
+// 	var name string
+// 	var age int
+// 	fmt.Sscan("low 12", &name, &age)
+// 	fmt.Println(name, age)
+// 	// fmt.Sprintln()
+// 	// a := "hello world"
+// 	// b := "hello world"
+// 	// strings.Compare()
+// 	// fmt.Println(a == b)
+
+// 	x := "!!!@@@你好,!@#$ Gophers###$$$"
+// 	fmt.Println(strings.Trim(x, "!@#$"))
+
+// 	s := []int{5, 3, 2, 4, 1, 6, 7}
+// 	sort.Sort(sort.Reverse(sort.IntSlice(s)))
+// 	fmt.Println(s)
+
+// 	// time.NewTimer()
+// 	// time.After()
+// 	// time.NewTicker()
+// 	// time.Time
+// 	// time.Now().Add(10 * time.Second).After()
+// 	t2 := time.Unix(1693297828, 0)
+// 	fmt.Println(t2)
+
+// 	datetime := "2020|11|26 11:25:39"
+// 	formatTime, _ := time.Parse("2006|01|02 15:04:05", datetime)
+// 	fmt.Println(formatTime)
+// }
+
 func main() {
-	// reader_str := strings.NewReader("hello world")
-	// // reader_byte := bytes.NewReader([]byte{1, 2, 3})
+	// fmt.Printf()
+	// json.
+	// json.
 
-	// reader_buf := bufio.NewReader(reader_str)
-	// line1, err := reader_buf.ReadString(' ')
-	// line2, err := reader_buf.ReadString(' ')
-	// fmt.Println(line1, err, line2)
-
-	// mux := http.NewServeMux()
-	// mux.ServeHTTP()
-
-	// buf := bytes.NewBuffer(make([]byte, 0))
-	// fmt.Fprint(buf, "hello", 1234, "world")
-	// fmt.Println(buf)
-	// str := fmt.Sprint("hwll step")
-	// fmt.Println(str)
-
-	var name string
-	var age int
-	fmt.Sscan("low 12", &name, &age)
-	fmt.Println(name, age)
-	// fmt.Sprintln()
-	// a := "hello world"
-	// b := "hello world"
-	// strings.Compare()
-	// fmt.Println(a == b)
-
-	x := "!!!@@@你好,!@#$ Gophers###$$$"
-	fmt.Println(strings.Trim(x, "!@#$"))
-
-	s := []int{5, 3, 2, 4, 1, 6, 7}
-	sort.Sort(sort.Reverse(sort.IntSlice(s)))
-	fmt.Println(s)
-
-	// time.NewTimer()
-	// time.After()
-	// time.NewTicker()
-	// time.Time
-	// time.Now().Add(10 * time.Second).After()
-	t2 := time.Unix(1693297828, 0)
-	fmt.Println(t2)
-
-	datetime := "2020|11|26 11:25:39"
-	formatTime, _ := time.Parse("2006|01|02 15:04:05", datetime)
-	fmt.Println(formatTime)
 }
