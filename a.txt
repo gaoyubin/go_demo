@@ -1,0 +1,14 @@
+Host *
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials no
+Host git.byted.org
+    Hostname git.byted.org
+    Port 29418
+    User gaoyubin
+Host review.byted.org
+    Hostname git.byted.org
+    Port 29418
+    User gaoyubin
+Host *.byted.org
+    GSSAPIAuthentication yes
+    User gaoyubin

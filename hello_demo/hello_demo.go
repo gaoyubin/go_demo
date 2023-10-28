@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"time"
 )
 
@@ -1269,11 +1270,75 @@ func main() {
 //
 //}
 
-//func main() {
-//	json := `{"name":{"first":"li","last":"dj"},"age":18}`
-//	lastName := gjson.Get(json, "name.last")
-//	fmt.Println("last name:", lastName.String())
+//	func main() {
+//		json := `{"name":{"first":"li","last":"dj"},"age":18}`
+//		lastName := gjson.Get(json, "name.last")
+//		fmt.Println("last name:", lastName.String())
 //
-//	age := gjson.Get(json, "age")
-//	fmt.Println("age:", age.Int())
+//		age := gjson.Get(json, "age")
+//		fmt.Println("age:", age.Int())
+//	}
+
+//func main() {
+//	t1 := time.Now()
+//	fmt.Println(t1, t1.Unix())
+//
+//	date_str := "2012-12-1"
+//	date_std := "2006-1-2"
+//	t2, err := time.Parse(date_std, date_str)
+//	fmt.Println(t2, err)
+//
+//	//d1 := time.Duration()
+//	t3 := t2.Add(3 * time.Hour)
+//	fmt.Println(t3)
 //}
+
+func MyPrintf(args ...interface{}) {
+	fmt.Println(args)
+	for _, arg := range args {
+		switch arg.(type) {
+		case int:
+			fmt.Println(arg, "is an int value.")
+		case string:
+			fmt.Println(arg, "is a string value.")
+		case int64:
+			fmt.Println(arg, "is an int64 value.")
+		default:
+			fmt.Println(arg, "is an unknown type.", reflect.TypeOf(arg))
+		}
+	}
+}
+
+/*func main() {
+	//var v1 int = 1
+	//var v2 int64 = 234
+	//var v3 string = "hello"
+	//var v4 float32 = 1.234
+	//MyPrintf(v1, v2, v3, v4)
+	interface_list := []interface{}{1, "hello", true}
+	MyPrintf(interface_list)
+	fmt.Println(interface_list, 2)
+
+}
+*/
+
+//func main() {
+//	var m1 map[string]string
+//	val, ok := m1["1"]
+//	//m1["2"] = "hello"
+//	fmt.Println(val, ok)
+//}
+
+func main() {
+	arr := []int{1, 2, 3, 4}
+	fmt.Println(arr, len(arr))
+	arr1 := arr[:3]
+	fmt.Println(arr1, len(arr1))
+	AppendSlice(arr1)
+	fmt.Println(arr1, len(arr1))
+	fmt.Println(arr, len(arr))
+}
+func AppendSlice(arr []int) {
+	arr = append(arr, 5)
+	fmt.Println(arr, len(arr))
+}

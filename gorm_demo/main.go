@@ -72,6 +72,7 @@ func (o OrderDetail) TableName() string {
 //fmt.Println(orderlist)
 
 // }
+
 type User struct {
 	//ID   uint `gorm:"primarykey"`
 	gorm.Model
@@ -116,9 +117,21 @@ func main() {
 	//db.Debug().Delete(&user1)
 
 	//user_list := []User
-	var user_list []*User
-	db.Debug().Unscoped().Find(&user_list)
-	fmt.Println(*user_list[0])
+
+	//var user_list []User
+	//db.Debug().Unscoped().Find(&user_list)
+	//fmt.Println(user_list[0])
+
+	//user := User{}
+	//user.ID = 1
+	//user.Age = 30
+	//err := conn.Model(activity).Clauses(clause.Returning{}).Update("detail", activity.Detail).Error
+
+	//var users []User
+	//result := db.Model(&users).Clauses(clause.Returning{}).Where("id = ?", 1).Update("age", 70)
+	////result := db.Debug().Model(&user).Clauses(clause.Returning{}).Update("age", 30)
+	//fmt.Println(result.RowsAffected, result.Error)
+	//fmt.Println(users)
 
 	//var res User
 	//db.Debug().Raw("select * from users where id=2").Scan(&res)
@@ -136,4 +149,24 @@ func main() {
 	//	fmt.Println(res)
 	//
 	//}
+
+	//id_list := []int64{1, 2, 3, 4, 5}
+	//var users []User
+	//result := db.Debug().Model(&users).Where("id in (?)", id_list).Find(&users)
+	//fmt.Println(users, result.Error, result.RowsAffected)
+
+	user := User{Age: 19}
+	//user.Age = 0
+	////user.Name = ""
+	user_list := []User{}
+	err = db.Debug().Model(User{}).Where(&user).Find(&user_list).Limit(10).Error
+	fmt.Println(err, user_list)
+
+	//user_filter := User{}
+	//user_filter.ID = 2
+	//user_update := User{Age: 0}
+	//
+	//result := db.Debug().Model(&user_filter).Updates(&user_update)
+	//fmt.Println(result.Error, result.RowsAffected, user_update)
+
 }
