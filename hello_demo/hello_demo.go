@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"reflect"
 	"time"
+
+	"github.com/buger/jsonparser"
 )
 
 /*
@@ -1263,12 +1265,12 @@ func main() {
 // 	fmt.Println(formatTime)
 // }
 
-//func main() {
+// func main() {
 //	// fmt.Printf()
 //	// json.
 //	// json.
 //
-//}
+// }
 
 //	func main() {
 //		json := `{"name":{"first":"li","last":"dj"},"age":18}`
@@ -1279,7 +1281,7 @@ func main() {
 //		fmt.Println("age:", age.Int())
 //	}
 
-//func main() {
+// func main() {
 //	t1 := time.Now()
 //	fmt.Println(t1, t1.Unix())
 //
@@ -1291,7 +1293,7 @@ func main() {
 //	//d1 := time.Duration()
 //	t3 := t2.Add(3 * time.Hour)
 //	fmt.Println(t3)
-//}
+// }
 
 func MyPrintf(args ...interface{}) {
 	fmt.Println(args)
@@ -1322,23 +1324,221 @@ func MyPrintf(args ...interface{}) {
 }
 */
 
-//func main() {
+// func main() {
 //	var m1 map[string]string
 //	val, ok := m1["1"]
 //	//m1["2"] = "hello"
 //	fmt.Println(val, ok)
-//}
+// }
+
+// func main() {
+//	arr := []int{1, 2, 3, 4}
+//	fmt.Println(arr, len(arr))
+//	arr1 := arr[:3]
+//	fmt.Println(arr1, len(arr1))
+//	AppendSlice(arr1)
+//	fmt.Println(arr1, len(arr1))
+//	fmt.Println(arr, len(arr))
+// }
+// func AppendSlice(arr []int) {
+//	arr = append(arr, 5)
+//	fmt.Println(arr, len(arr))
+// }
+
+// func main() {
+//	arr := 0
+//	buf, err := json.Marshal(arr)
+//	if err != nil {
+//		fmt.Println(err)
+//	}
+//	fmt.Println(buf, string(buf))
+//
+// var arr1 []int
+// err = json.Unmarshal(buf, &arr1)
+// if err != nil {
+//	fmt.Println(err)
+// }
+// fmt.Println(arr1)
+// var arr []int
+// var arr int
+// err := json.Unmarshal([]byte(""), &arr)
+// if err != nil {
+//	//fmt.Println(err)
+//	panic(err)
+// }
+// fmt.Println(err, arr)
+
+// dbName := "test"
+// tableName := "hello"
+// operation := "world"
+// sql := fmt.Sprintf("SELECT ids FROM (SELECT bitmapToArray(ids) ids FROM (SELECT BitEngineDecode(ids, '%s', "+
+//	"'%s') ids FROM (SELECT bitmapExtract('%s')(tag_idx, ids) ids FROM ( ", dbName, tableName, operation)
+// fmt.Println(sql)
+
+// }
+
+type Record struct {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+}
 
 func main() {
-	arr := []int{1, 2, 3, 4}
-	fmt.Println(arr, len(arr))
-	arr1 := arr[:3]
-	fmt.Println(arr1, len(arr1))
-	AppendSlice(arr1)
-	fmt.Println(arr1, len(arr1))
-	fmt.Println(arr, len(arr))
+	// data := []byte(`[{"name":"John Doe","age":30},{"name":"Jane Doe","age":25}]`)
+	//
+	// var records []*Record
+	// err := json.Unmarshal(data, &records)
+	// if err != nil {
+	// 	fmt.Println("Error:", err)
+	// 	return
+	// }
+	// str, _ := json.Marshal(records)
+	// fmt.Println(string(str))
+	// for _, record := range records {
+	// 	fmt.Println("Name:", record.Name)
+	// 	fmt.Println("Age:", record.Age)
+	// }
+	// buf := []byte(`{"name":"John Doe","age":"30"}`)
+	str := `
+{
+    "static_bg_url":"https://lf3-static.bytednsdoc.com/obj/eden-cn/vopteh7uhpauhs/common_bg.png",
+    "force_process":true,
+    "popup_type":"red_pack_rain_2022618_toutiao",
+    "rate_control":{
+        "client_enabled":true,
+        "key_tpl":"red_packet_rain_2022618",
+        "rate_scene":0,
+        "rate_seconds":86400,
+        "rate_times":1
+    },
+    "widget_layout":{
+        "asyncBlockSideEffects":[
+            {
+                "data":{
+                    "biz_id":"2022061813"
+                },
+                "eventName":"618_red_packet_rain_polling"
+            }
+        ],
+        "btn_widgets":[
+            {
+                "height":310,
+                "position":{
+                    "left":50,
+                    "top":50
+                },
+                "sideEffects":[
+                    {
+                        "data":{
+                            "schema":"sslocal://webcast_webview?type=fullscreen&url=https%3A%2F%2Flf-webcast-sourcecdn-tos.bytegecko.com%2Fobj%2Fbyte-gurd-source%2F10181%2Fgecko%2Fresource%2Fclient_red_envelope%2Fparticle-rain%2Findex.html&host=aweme&engine_type=new&hide_nav_bar=1&hide_status_bar=1&hide_loading=0&forbid_right_back=1&use_wk_falcon=1"
+                        },
+                        "eventName":"open_schema"
+                    },
+                    {
+                        "data":{
+
+                        },
+                        "eventName":"close_dialog"
+                    }
+                ],
+                "width":275
+            },
+            {
+                "height":30,
+                "position":{
+                    "left":123,
+                    "top":370
+                },
+                "sideEffects":[
+                    {
+                        "data":{
+                            "schema":"sslocal://webview?url=https%3A%2F%2Fmix.jinritemai.com%2Ffalcon%2Fmix_page%2Flocal_host%2Findex.html%3FallowMediaAutoPlay%3D1%26enter_from%3Dhonbaoyu_guize%26hide_nav_bar%3D1%26hide_system_video_poster%3D1%26id%3D7303885949103309093%26origin_type%3Dhonbaoyu_guize%26pass_enter_from%3D1%26pia_mixrender%3D1%26should_full_screen%3D1%26support_h5_audio_autoplay%3D1%26trans_status_bar%3D1%26ttwebview_extension_mixrender%3D1&bounce_disable=1&enable_font_scale=0&hide_back_close=1&hide_bar=1&hide_nav_bar=1&hide_status_bar=1&host=aweme&should_full_screen=1&show_more_button=0&status_font_dark=0"
+                        },
+                        "eventName":"open_schema"
+                    }
+                ],
+                "width":130
+            }
+        ],
+        "info_widget":{
+            "position":{
+                "left":0,
+                "top":0
+            }
+        },
+        "preEffects":[
+            {
+                "data":{
+                    "lottie_url":"https://lf3-static.bytednsdoc.com/obj/eden-cn/bvkeh7flrjhq/red_packet_rain.json"
+                },
+                "eventName":"lottie"
+            }
+        ],
+        "sideEffects":[
+
+        ],
+        "type":"image"
+    },
+    "activity_id":"2023120101"
 }
-func AppendSlice(arr []int) {
-	arr = append(arr, 5)
-	fmt.Println(arr, len(arr))
+			`
+	buf := []byte(str)
+	extraJson, err := simplejson.NewJson(buf)
+	fmt.Println(extraJson, err)
+
+	btnPath := []string{"widget_layout", "btn_widgets"}
+	btnJson := extraJson.GetPath(btnPath...)
+	fmt.Println(btnJson)
+
+	ruleJson := btnJson.GetIndex(1)
+	fmt.Println(ruleJson)
+
+	effectJson := ruleJson.Get("sideEffects")
+	effect0Json := effectJson.GetIndex(0)
+
+	// schemaPath := []string{"data"}
+	dataJson := effect0Json.Get("data")
+	fmt.Println(dataJson)
+
+	dataJson.Set("schema", "hello")
+	fmt.Println(dataJson)
+	// schema.set
+	// name, err := testJson.Get("name").String()
+	// fmt.Println(name, err)
+	//
+	// age, err := testJson.Get("age").String()
+	// fmt.Println(age, err)
+	fmt.Println("-------")
+	// , "sideEffects", "[0]", "data", "schema"
+	schemaPath := []string{"widget_layout", "btn_widgets", "[1]", "sideEffects", "[0]", "data", "schema"}
+	schema := extraJson.GetPath(schemaPath...)
+	fmt.Println(schema)
+
+	val, ty, offset, err := jsonparser.Get(buf, schemaPath...)
+	fmt.Println(string(val), ty, offset, err)
+
+	res, err := jsonparser.Set(buf, []byte("\"hello\""), schemaPath...)
+
+	fmt.Println(string(res), err)
+
+	// res_replace := strings.ReplaceAll(string(res), "\n", "")
+	// res_replace = strings.ReplaceAll(res_replace, " ", "")
+	// fmt.Println(res_replace)
+
+	ruleSchemaWithQuota := fmt.Sprintf("\"%s\"", "helloworld")
+	res_, _ := jsonparser.Set([]byte("{}"), []byte(ruleSchemaWithQuota), "es", "wq", "[0]", "url")
+	fmt.Println(string(res_))
+
+	fmt.Println("_______________________")
+	strOneline := "{\"static_bg_url\":\"https://lf3-static.bytednsdoc.com/obj/eden-cn/vopteh7uhpauhs/common_bg.png\",\"force_process\":true,\"popup_type\":\"red_pack_rain_2022618_toutiao\",\"rate_control\":{\"client_enabled\":true,\"key_tpl\":\"red_packet_rain_2022618\",\"rate_scene\":0,\"rate_seconds\":86400,\"rate_times\":1},\"widget_layout\":{\"asyncBlockSideEffects\":[{\"data\":{\"biz_id\":\"2022061813\"},\"eventName\":\"618_red_packet_rain_polling\"}],\"btn_widgets\":[{\"height\":310,\"position\":{\"left\":50,\"top\":50},\"sideEffects\":[{\"data\":{\"schema\":\"sslocal://webcast_webview?type=fullscreen&url=https%3A%2F%2Flf-webcast-sourcecdn-tos.bytegecko.com%2Fobj%2Fbyte-gurd-source%2F10181%2Fgecko%2Fresource%2Fclient_red_envelope%2Fparticle-rain%2Findex.html&host=aweme&engine_type=new&hide_nav_bar=1&hide_status_bar=1&hide_loading=0&forbid_right_back=1&use_wk_falcon=1\"},\"eventName\":\"open_schema\"},{\"data\":{},\"eventName\":\"close_dialog\"}],\"width\":275},{\"height\":30,\"position\":{\"left\":123,\"top\":370},\"sideEffects\":[{\"data\":{\"schema\":\"\"},\"eventName\":\"open_schema\"}],\"width\":130}],\"info_widget\":{\"position\":{\"left\":0,\"top\":0}},\"preEffects\":[{\"data\":{\"lottie_url\":\"https://lf3-static.bytednsdoc.com/obj/eden-cn/bvkeh7flrjhq/red_packet_rain.json\"},\"eventName\":\"lottie\"}],\"sideEffects\":[],\"type\":\"image\"},\"activity_id\":\"2023120101\"}"
+	println(strOneline)
+
+	resOnline, err := jsonparser.Set([]byte(strOneline), []byte("\"hello\""), schemaPath...)
+	fmt.Println(string(resOnline), err)
+
+	const (
+		YYYYMMDD = "20060102"
+	)
+	now := time.Now().UTC()
+	fmt.Println(now.Format(YYYYMMDD))
+
 }
