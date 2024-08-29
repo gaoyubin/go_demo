@@ -1509,29 +1509,34 @@ func main() {
 	//
 	// age, err := testJson.Get("age").String()
 	// fmt.Println(age, err)
-	fmt.Println("-------")
+
+	// fmt.Println("-------")
 	// , "sideEffects", "[0]", "data", "schema"
-	schemaPath := []string{"widget_layout", "btn_widgets", "[1]", "sideEffects", "[0]", "data", "schema"}
-	schema := extraJson.GetPath(schemaPath...)
-	fmt.Println(schema)
-
-	val, ty, offset, err := jsonparser.Get(buf, schemaPath...)
-	fmt.Println(string(val), ty, offset, err)
-
-	res, err := jsonparser.Set(buf, []byte("\"hello\""), schemaPath...)
-
-	fmt.Println(string(res), err)
-
-	// res_replace := strings.ReplaceAll(string(res), "\n", "")
-	// res_replace = strings.ReplaceAll(res_replace, " ", "")
-	// fmt.Println(res_replace)
-
-	ruleSchemaWithQuota := fmt.Sprintf("\"%s\"", "helloworld")
-	res_, _ := jsonparser.Set([]byte("{}"), []byte(ruleSchemaWithQuota), "es", "wq", "[0]", "url")
-	fmt.Println(string(res_))
+	// schemaPath := []string{"widget_layout", "btn_widgets", "[1]", "sideEffects", "[0]", "data", "schema"}
+	// schema := extraJson.GetPath(schemaPath...)
+	// fmt.Println(schema)
+	//
+	// val, ty, offset, err := jsonparser.Get(buf, schemaPath...)
+	// fmt.Println(string(val), ty, offset, err)
+	//
+	// res, err := jsonparser.Set(buf, []byte("\"hello\""), schemaPath...)
+	//
+	// fmt.Println(string(res), err)
+	//
+	// // res_replace := strings.ReplaceAll(string(res), "\n", "")
+	// // res_replace = strings.ReplaceAll(res_replace, " ", "")
+	// // fmt.Println(res_replace)
+	//
+	// ruleSchemaWithQuota := fmt.Sprintf("\"%s\"", "helloworld")
+	// res_, _ := jsonparser.Set([]byte("{}"), []byte(ruleSchemaWithQuota), "es", "wq", "[0]", "url")
+	// fmt.Println(string(res_))
 
 	fmt.Println("_______________________")
-	strOneline := "{\"static_bg_url\":\"https://lf3-static.bytednsdoc.com/obj/eden-cn/vopteh7uhpauhs/common_bg.png\",\"force_process\":true,\"popup_type\":\"red_pack_rain_2022618_toutiao\",\"rate_control\":{\"client_enabled\":true,\"key_tpl\":\"red_packet_rain_2022618\",\"rate_scene\":0,\"rate_seconds\":86400,\"rate_times\":1},\"widget_layout\":{\"asyncBlockSideEffects\":[{\"data\":{\"biz_id\":\"2022061813\"},\"eventName\":\"618_red_packet_rain_polling\"}],\"btn_widgets\":[{\"height\":310,\"position\":{\"left\":50,\"top\":50},\"sideEffects\":[{\"data\":{\"schema\":\"sslocal://webcast_webview?type=fullscreen&url=https%3A%2F%2Flf-webcast-sourcecdn-tos.bytegecko.com%2Fobj%2Fbyte-gurd-source%2F10181%2Fgecko%2Fresource%2Fclient_red_envelope%2Fparticle-rain%2Findex.html&host=aweme&engine_type=new&hide_nav_bar=1&hide_status_bar=1&hide_loading=0&forbid_right_back=1&use_wk_falcon=1\"},\"eventName\":\"open_schema\"},{\"data\":{},\"eventName\":\"close_dialog\"}],\"width\":275},{\"height\":30,\"position\":{\"left\":123,\"top\":370},\"sideEffects\":[{\"data\":{\"schema\":\"\"},\"eventName\":\"open_schema\"}],\"width\":130}],\"info_widget\":{\"position\":{\"left\":0,\"top\":0}},\"preEffects\":[{\"data\":{\"lottie_url\":\"https://lf3-static.bytednsdoc.com/obj/eden-cn/bvkeh7flrjhq/red_packet_rain.json\"},\"eventName\":\"lottie\"}],\"sideEffects\":[],\"type\":\"image\"},\"activity_id\":\"2023120101\"}"
+	// schemaPath := []string{"widget_layout", "btn_widgets", "[1]", "sideEffects", "[0]", "data", "schema"}
+	schemaPath := []string{"widget_layout", "btn_widgets", "[1]", "sideEffects", "[0]", "data", "schema"}
+	// strOneline := "{\"static_bg_url\":\"https://lf3-static.bytednsdoc.com/obj/eden-cn/vopteh7uhpauhs/common_bg.png\",\"force_process\":true,\"popup_type\":\"red_pack_rain_2022618_toutiao\",\"rate_control\":{\"client_enabled\":true,\"key_tpl\":\"red_packet_rain_2022618\",\"rate_scene\":0,\"rate_seconds\":86400,\"rate_times\":1},\"widget_layout\":{\"asyncBlockSideEffects\":[{\"data\":{\"biz_id\":\"2022061813\"},\"eventName\":\"618_red_packet_rain_polling\"}],\"btn_widgets\":[{\"height\":310,\"position\":{\"left\":50,\"top\":50},\"sideEffects\":[{\"data\":{\"schema\":\"sslocal://webcast_webview?type=fullscreen&url=https%3A%2F%2Flf-webcast-sourcecdn-tos.bytegecko.com%2Fobj%2Fbyte-gurd-source%2F10181%2Fgecko%2Fresource%2Fclient_red_envelope%2Fparticle-rain%2Findex.html&host=aweme&engine_type=new&hide_nav_bar=1&hide_status_bar=1&hide_loading=0&forbid_right_back=1&use_wk_falcon=1\"},\"eventName\":\"open_schema\"},{\"data\":{},\"eventName\":\"close_dialog\"}],\"width\":275},{\"height\":30,\"position\":{\"left\":123,\"top\":370},\"sideEffects\":[{\"data\":{\"schema\":\"\"},\"eventName\":\"open_schema\"}],\"width\":130}],\"info_widget\":{\"position\":{\"left\":0,\"top\":0}},\"preEffects\":[{\"data\":{\"lottie_url\":\"https://lf3-static.bytednsdoc.com/obj/eden-cn/bvkeh7flrjhq/red_packet_rain.json\"},\"eventName\":\"lottie\"}],\"sideEffects\":[],\"type\":\"image\"},\"activity_id\":\"2023120101\"}"
+	// strOneline := "{\"static_bg_url\":\"https://lf3-static.bytednsdoc.com/obj/eden-cn/vopteh7uhpauhs/common_bg.png\",\"force_process\":true,\"popup_type\":\"red_pack_rain_2022618_toutiao\",\"rate_control\":{\"client_enabled\":true,\"key_tpl\":\"red_packet_rain_2022618\",\"rate_scene\":0,\"rate_seconds\":86400,\"rate_times\":1},\"widget_layout\":{\"asyncBlockSideEffects\":[{\"data\":{\"biz_id\":\"2022061813\"},\"eventName\":\"618_red_packet_rain_polling\"}],\"btn_widgets\":[{\"height\":310,\"position\":{\"left\":50,\"top\":50},\"sideEffects\":[{\"data\":{\"schema\":\"sslocal://webcast_webview?type=fullscreen&url=https%3A%2F%2Flf-webcast-sourcecdn-tos.bytegecko.com%2Fobj%2Fbyte-gurd-source%2F10181%2Fgecko%2Fresource%2Fclient_red_envelope%2Fparticle-rain%2Findex.html&host=aweme&engine_type=new&hide_nav_bar=1&hide_status_bar=1&hide_loading=0&forbid_right_back=1&use_wk_falcon=1\"},\"eventName\":\"open_schema\"},{\"data\":{},\"eventName\":\"close_dialog\"}],\"width\":275},{\"height\":30,\"position\":{\"left\":123,\"top\":370},\"sideEffects\":[{\"data\":{\"schema\":\"sslocal://webview?url=https%3A%2F%2Fmix.jinritemai.com%2Ffalcon%2Fmix_page%2Flocal_host%2Findex.html%3FallowMediaAutoPlay%3D1%26enter_from%3Dhonbaoyu_guize%26hide_nav_bar%3D1%26hide_system_video_poster%3D1%26id%3D7303885949103309093%26origin_type%3Dhonbaoyu_guize%26pass_enter_from%3D1%26pia_mixrender%3D1%26should_full_screen%3D1%26support_h5_audio_autoplay%3D1%26trans_status_bar%3D1%26ttwebview_extension_mixrender%3D1&bounce_disable=1&enable_font_scale=0&hide_back_close=1&hide_bar=1&hide_nav_bar=1&hide_status_bar=1&host=aweme&should_full_screen=1&show_more_button=0&status_font_dark=0\"},\"eventName\":\"open_schema\"}],\"width\":130}],\"info_widget\":{\"position\":{\"left\":0,\"top\":0}},\"preEffects\":[{\"data\":{\"lottie_url\":\"https://lf3-static.bytednsdoc.com/obj/eden-cn/bvkeh7flrjhq/red_packet_rain.json\"},\"eventName\":\"lottie\"}],\"sideEffects\":[],\"type\":\"image\"},\"activity_id\":\"2023120101\"}"
+	strOneline := "{\"static_bg_url\":\"https://lf3-static.bytednsdoc.com/obj/eden-cn/vopteh7uhpauhs/common_bg.png\",\"force_process\":true,\"popup_type\":\"red_pack_rain_2022618_toutiao\",\"rate_control\":{\"client_enabled\":true,\"key_tpl\":\"red_packet_rain_2022618\",\"rate_scene\":0,\"rate_seconds\":86400,\"rate_times\":1},\"widget_layout\":{\"asyncBlockSideEffects\":[{\"data\":{\"biz_id\":\"2022061813\"},\"eventName\":\"618_red_packet_rain_polling\"}],\"btn_widgets\":[{\"height\":310,\"position\":{\"left\":50,\"top\":50},\"sideEffects\":[{\"data\":{\"schema\":\"sslocal://webcast_webview?type=fullscreen&url=https%3A%2F%2Flf-webcast-sourcecdn-tos.bytegecko.com%2Fobj%2Fbyte-gurd-source%2F10181%2Fgecko%2Fresource%2Fclient_red_envelope%2Fparticle-rain%2Findex.html&host=aweme&engine_type=new&hide_nav_bar=1&hide_status_bar=1&hide_loading=0&forbid_right_back=1&use_wk_falcon=1\"},\"eventName\":\"open_schema\"},{\"data\":{},\"eventName\":\"close_dialog\"}],\"width\":275},{\"height\":30,\"position\":{\"left\":123,\"top\":370},\"sideEffects\":[{\"data\":{\"schema\":\"sslocal://webview?url=https%3A%2F%2Fmix.jinritemai.com%2Ffalcon%2Fmix_page%2Flocal_host%2Findex.html%3FallowMediaAutoPlay%3D1%26enter_from%3Dhonbaoyu_guize%26hide_nav_bar%3D1%26hide_system_video_poster%3D1%26id%3D7303885949103309093%26origin_type%3Dhonbaoyu_guize%26pass_enter_from%3D1%26pia_mixrender%3D1%26should_full_screen%3D1%26support_h5_audio_autoplay%3D1%26trans_status_bar%3D1%26ttwebview_extension_mixrender%3D1&bounce_disable=1&enable_font_scale=0&hide_back_close=1&hide_bar=1&hide_nav_bar=1&hide_status_bar=1&host=aweme&should_full_screen=1&show_more_button=0&status_font_dark=0\"},\"eventName\":\"open_schema\"}],\"width\":130}],\"info_widget\":{\"position\":{\"left\":0,\"top\":0}},\"preEffects\":[{\"data\":{\"lottie_url\":\"https://lf3-static.bytednsdoc.com/obj/eden-cn/bvkeh7flrjhq/red_packet_rain.json\"},\"eventName\":\"lottie\"}],\"sideEffects\":[],\"type\":\"image\"},\"activity_id\":\"2023120101\"}"
 	println(strOneline)
 
 	strSchema := fmt.Sprintf("\"%v\"", "hello")
@@ -1555,10 +1560,10 @@ func main() {
 	// fmt.Println(result, err, len(result))
 	// fmt.Println(result[0])
 	// fmt.Println(result[1])
-	fmt.Println("______")
-	b := []int{3, 4, 6, 9, 2}
-	TestSort(b)
-	fmt.Println(b)
+	// fmt.Println("______")
+	// b := []int{3, 4, 6, 9, 2}
+	// TestSort(b)
+	// fmt.Println(b)
 }
 
 func TestSort(a []int) {
